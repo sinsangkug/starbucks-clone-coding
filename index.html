@@ -42,6 +42,12 @@
 
   <script defer src="./js/youtube.js"></script>
   <script defer src="./js/main.js"></script>
+  <!-- 추가: 날씨 API 스크립트 -->
+  <script defer src="./js/weather.js"></script>
+  <!-- [강의 포인트] 카카오맵 API 스크립트 & 비동기 실습 스크립트 -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY"></script>
+  <script defer src="./js/menu.js"></script>
+  <script defer src="./js/map.js"></script>
 </head>
 <body>
 
@@ -381,6 +387,14 @@
       <div class="badge">
         <img src="./images/badge2.jpg" alt="Badge" />
       </div>
+      
+      <!-- [강의 포인트] 날씨 추천 뱃지 영역 -->
+      <div class="badge weather-badge">
+        <div class="weather-content" id="weather-badge-content">
+          <span class="material-icons">cloud_sync</span>
+          <p>날씨 확인중...</p>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -513,6 +527,17 @@
     </div>
   </section>
 
+  <!-- [강의 포인트] 비동기 메뉴 렌더링 영역 -->
+  <section class="menu-data-section">
+    <div class="inner">
+      <h2 class="section-title">STARBUCKS MENU</h2>
+      <div id="menu-list-container" class="menu-list">
+        <!-- JS로 메뉴 데이터가 동적으로 들어옵니다 -->
+        <p class="loading">메뉴 데이터를 불러오는 중입니다...</p>
+      </div>
+    </div>
+  </section>
+
   <!-- SEASON PRODUCT -->
   <section class="season-product scroll-spy">
     <div class="inner">
@@ -603,6 +628,14 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- [강의 포인트] 카카오맵 렌더링 영역 -->
+  <section class="store-map-section">
+    <div class="inner">
+      <h2 class="section-title">주변 매장 찾기 (Kakao Map API)</h2>
+      <div id="kakao-map" class="map-container"></div>
     </div>
   </section>
 

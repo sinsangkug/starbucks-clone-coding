@@ -1,152 +1,66 @@
-const searchEl = document.querySelector('.search');
-const searchInputEl = searchEl.querySelector('input');
+// [강의 포인트] 주요 UI 인터랙션 및 라이브러리(Lodash, GSAP, Swiper, ScrollMagic) 활용
 
-searchEl.addEventListener('click', function(){
-  searchInputEl.focus();
-});
+// 1. 통합검색 영역 인터랙션
+// TODO 1-1. '.search' 요소와 그 안의 'input' 요소를 선택하세요.
 
-searchInputEl.addEventListener('focus', function(){
-  searchEl.classList.add('focused');
-  searchInputEl.setAttribute('placeholder', '통합검색');
-});
+// TODO 1-2. 돋보기 아이콘(.search) 클릭 시 input 요소에 포커스(focus)를 주도록 이벤트 리스너를 추가하세요.
 
-searchInputEl.addEventListener('blur', function(){
-  searchEl.classList.remove('focused');
-  searchInputEl.setAttribute('placeholder', '');
-});
+// TODO 1-3. input 요소에 포커스가 들어갔을 때(focus), '.search' 요소에 'focused' 클래스를 추가하고 placeholder 속성을 지정하세요.
 
-const badgeEl = document.querySelector('header .badges');
-const toTopEl = document.querySelector('#to-top');
-
-window.addEventListener('scroll', _.throttle(function(){
-  console.log(window.scrollY);
-  if (window.scrollY > 500) {
-    // 배지 숨기기
-    // gsap.to(애니메이션 처리를 할 요소, 요소가 애니메이션 처리되는 지속 시간, 옵션 );
-    gsap.to(badgeEl, .6, {
-      opacity: 0,
-      display: 'none'
-    });
-    // 버튼 보이기
-    gsap.to(toTopEl, .2, {
-      x: 0 
-    });
-  } else {
-    // 배지 보이기
-    gsap.to(badgeEl, .6, {
-      opacity: 1,
-      display: 'block'
-    });
-    // 버튼 숨기기
-    gsap.to(toTopEl, .2, {
-      x: 100 
-    });
-  }
-}, 300));
-// _.throttle(함수, 시간)
-
-toTopEl.addEventListener('click', function () {
-  gsap.to(window, .7, {
-    scrollTo: 0
-  });
-});
+// TODO 1-4. input 요소에서 포커스가 해제되었을 때(blur), 'focused' 클래스를 제거하고 placeholder를 초기화하세요.
 
 
-const fadeEls = document.querySelectorAll('.visual .fade-in');
-fadeEls.forEach(function (fadeEl, index) {
-  // gsap.to(애니메이션 처리를 할 요소, 요소가 애니메이션 처리되는 지속 시간, 옵션 );
-  gsap.to(fadeEl, 1, {
-    delay: (index + 1) * .7, //0.7, 1.4, 2.1, 2.7
-    opacity: 1
-  })
-});
+// 2. 우측 스크롤 배지 및 To Top 버튼 제어
+// TODO 2-1. 배지 요소와 맨 위로 가기 버튼 요소를 선택하세요.
+
+// TODO 2-2. window 전역 객체에 스크롤 이벤트를 추가하고, _.throttle()을 사용해 함수 실행 빈도를 줄여보세요.
+
+  // TODO 2-3. window.scrollY 값에 따라 배지를 숨기거나 보이게 하는 조건문을 작성하세요. (gsap.to() 활용)
+  
+  // TODO 2-4. 맨 위로 가기 버튼 또한 스크롤 위치에 따라 보이거나 숨기도록 제어하세요.
 
 
-// new Swiper(선택자, 옵션)
-new Swiper('.notice-line .swiper-container', {
-  direction: 'vertical',
-  autoplay: true,
-  loop: true
-});
-new Swiper('.promotion .swiper-container', {
-  slidesPerView: 3, // 한번에 보여줄 슬라이드 갯수
-  spaceBetween: 10, //슬라이드 사이 여백
-  centeredSlides: true, // 1번 슬라이드가 가운데 보이기
-  loop: true,
-  autoplay: {
-    delay: 5000 // 5초에 한번씩 자동으로 슬라이드
-  },
-  pagination: {
-    el: '.promotion .swiper-pagination', // 페이지 번호 요소 선택자
-    clickable: true // 사용자의 페이지 번호 요소 제어 가능 여부
-  },
-  navigation: {
-    prevEl: '.promotion .swiper-prev',
-    nextEl: '.promotion .swiper-next'
-  }
-});
-new Swiper('.awards .swiper-container', {
-  autoplay: true,
-  loop: true,
-  spaceBetween: 30,
-  slidesPerView: 5,
-  navigation: {
-    prevEl: '.awards .swiper-prev',
-    nextEl: '.awards .swiper-next'
-  }
-});
+// 3. To Top 버튼 클릭 이벤트
+// TODO 3-1. 맨 위로 가기 버튼 클릭 시 화면 맨 위로 스크롤되도록 설정하세요. (gsap.to(window, ... { scrollTo: 0 }))
 
 
-const promotionEl = document.querySelector('.promotion');
-const promotionToggleBtn = document.querySelector('.toggle-promotion');
-let isHidePromotion = false;
-promotionToggleBtn.addEventListener('click', function () {
-  isHidePromotion = !isHidePromotion;
-  if (isHidePromotion) {
-    // 숨김 처리!
-    promotionEl.classList.add('hide');
-  } else {
-    // 보임 처리!
-    promotionEl.classList.remove('hide');
-  }
- });
+// 4. 메인 비주얼 페이드인 애니메이션
+// TODO 4-1. 메인 섹션의 '.visual .fade-in' 요소들을 모두 선택하세요.
+
+// TODO 4-2. forEach()를 활용해 각 요소에 gsap.to() 애니메이션을 순차적으로(delay 적용) 실행하세요.
 
 
-// 범위 랜덤 함수(소수점 2자리까지)
-function random(min, max) {
-  // `.toFixed()`를 통해 반환된 문자 데이터를,
-  // `parseFloat()`을 통해 소수점을 가지는 숫자 데이터로 변환
-  return parseFloat((Math.random() * (max - min) + min).toFixed(2))
-}
-function floatingObject(selector, delay, size) {
-  // gsap.to(요소, 시간, 옵션);
-  gsap.to(
-    selector, 
-    random(1.5, 2.5), 
-    {
-      y: size,
-      repeat: -1,
-      yoyo: true,
-      ease: Power1.easeInOut,
-      delay: random(0, DelayNode)
-    }
-  );
-}
-floatingObject('.floating1', 1, 15);
-floatingObject('.floating2', .5, 15);
-floatingObject('.floating3', 1.5, 20);
+// 5. Swiper 슬라이더 적용
+// TODO 5-1. 공지사항(수직 슬라이드) 영역에 new Swiper() 객체를 생성하세요.
+
+// TODO 5-2. 프로모션(수평 슬라이드, 여러 개 보이기, 자동 재생, 페이징/네비게이션 버튼 등) 영역에 Swiper를 적용하세요.
+
+// TODO 5-3. 하단 어워즈 영역에 Swiper를 적용하세요.
 
 
-const spyEls = document.querySelectorAll('section.scroll-spy');
-spyEls.forEach(function (spyEl) {
-  new ScrollMagic
-    .Scene({
-      triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
-      triggerHook: .8 // 화면의 80% 지점에서 보여짐 여부 감시
-    })
-    .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
-    .addTo(new ScrollMagic.Controller()); // 컨트롤러에 장면을 할당 (필수!)
-});
+// 6. 프로모션 영역 토글 기능
+// TODO 6-1. 프로모션 영역('.promotion')과 토글 버튼('.toggle-promotion')을 선택하세요.
 
-const thisYear = document.querySelector('.this-year');
-thisYear.textContent = new Date().getFullYear(); // 올해 년도
+// TODO 6-2. 토글 상태를 저장할 boolean 변수를 선언하세요.
+
+// TODO 6-3. 클릭 시 토글 상태를 반전시키고, 클래스를 추가/제거하여 숨기거나 보이게 만드세요.
+
+
+// 7. 둥둥 떠다니는 애니메이션
+// TODO 7-1. 랜덤 숫자 생성 함수(random)를 작성하세요.
+
+// TODO 7-2. gsap.to(요소, 시간, 옵션)을 활용해 위아래로 움직이는 floatingObject() 함수를 작성하세요. (yoyo, repeat 활용)
+
+// TODO 7-3. 요소(.floating1, .floating2, .floating3) 별로 함수를 호출하세요.
+
+
+// 8. ScrollMagic 애니메이션
+// TODO 8-1. 스크롤 위치에 따라 화면에 나타날 요소들('section.scroll-spy')을 모두 선택하세요.
+
+// TODO 8-2. forEach()를 사용해 각 요소에 Scene 객체를 생성하고, 화면에 나타날 때 'show' 클래스를 추가하도록 ScrollMagic 제어기를 연결하세요.
+
+
+// 9. 올해 연도 동적 삽입
+// TODO 9-1. 푸터 영역의 '.this-year' 요소를 선택하세요.
+
+// TODO 9-2. new Date().getFullYear() 를 이용해 요소의 textContent에 올해 연도를 삽입하세요.

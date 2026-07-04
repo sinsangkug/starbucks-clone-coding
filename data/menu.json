@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "아이스 카페 아메리카노",
+    "engName": "Iced Caffe Americano",
+    "price": 4500,
+    "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110563]_20210415133646836.jpg"
+  },
+  {
+    "id": 2,
+    "name": "자몽 허니 블랙 티",
+    "engName": "Grapefruit Honey Black Tea",
+    "price": 5700,
+    "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000187]_20210419131013144.jpg"
+  },
+  {
+    "id": 3,
+    "name": "자바 칩 프라푸치노",
+    "engName": "Java Chip Frappuccino",
+    "price": 6300,
+    "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[168016]_20210415154152122.jpg"
+  },
+  {
+    "id": 4,
+    "name": "돌체 콜드 브루",
+    "engName": "Dolce Cold Brew",
+    "price": 6000,
+    "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002081]_20210415133657016.jpg"
+  }
+]
